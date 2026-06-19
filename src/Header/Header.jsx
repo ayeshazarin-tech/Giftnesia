@@ -15,10 +15,15 @@ const Header = () => {
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
 
-          <div className="dropdown">
-            <span>Services ▾</span>
+          <div className="service-wrapper">
+            <select className="service-dropdown">
+              <option>Services ▾</option>
+              <option>Birthday Gifts</option>
+  <option>Anniversary Gifts</option>
+  <option>Same-Day Delivery</option>
+            </select>
+           
           </div>
-
           <Link to="/contactpage">Contact</Link>
         </nav>
         <Link className="login-btn" to="/loginpage">

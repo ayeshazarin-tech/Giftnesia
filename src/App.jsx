@@ -10,7 +10,7 @@ import ContactPage from "./ContactPage/ContactPage";
 import LoginPage from "./LoginPage/LoginPage";
 
 function Home() {
-  return (
+  return ( 
     <>
       <GlobalInvestments />
       <About />
@@ -29,7 +29,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
-
+        
         <Route path="/contactpage" element={<ContactPage />} />
         <Route path="/loginpage" element={<LoginPage />} />
       </Routes>

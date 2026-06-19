@@ -1,65 +1,95 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
-
+      
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleLogin = async () => {
+    setError("");
+        
+    try {
+      setLoading(true);
 
-    console.log("Email:", email);
-    console.log("Password:", password);
+      const response = await fetch("", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    setEmail("");
-    setPassword("");
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+
+      console.log("User logged in:", data);
+
+      localStorage.setItem("token", data.token);
+
+      alert("Login successful!");
+    } catch (err) {
+      if (err.message.includes("fetch")) {
+        alert("Server not responding. Please try again later.");
+      } else {
+        alert(err.message || "Something went wrong");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
-                 
+
   return (
-    <div className="login-wrapper">
-      <div className="login-card">
-        <h2>Login</h2>
-        <p className="subtitle">
-          Welcome back! Please login to your account.
-        </p>
-                                          
-        <form onSubmit={handleSubmit} autoComplete="off">
-          <div className="input-group">
-            <input
-              type="email"
-              name="user_email"
-              autoComplete="new-email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label>Email</label>
-          </div>
+    <>
+      <div className="container">
 
-          <div className="input-group">
-            <input
-              type="password"
-              name="user_password"
-              autoComplete="new-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <label>Password</label>
-          </div>
-                                                                                                 
-          <div className="options">
-            <a href="#">Forgot password?</a>
-          </div>
+        {/* <div className="left">
+          <img src="wallpaper.png" alt="wallpaper" className="illustration" />
+        </div> */}
 
-          <button type="submit">Login</button>
-        </form>
+        <div className="right">
+          <div className="login-card">
+              
+            <h1>Hello!</h1>
+            <p className="subtitle">Sign Up to Get Started</p>
 
-        <p className="signup-text">
-          Don't have an account? <a href="#">Sign up</a>
-        </p>
+            <div className="input-group">
+              <img src="Emailicon.webp" alt="Email" className="input-icon" />
+              <input
+                type="text"
+                placeholder="Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            <div className="input-group">
+              <img src="Passwordicon.jpg" alt="Password" className="input-icon" />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            
+            <button className="btn" onClick={handleLogin} disabled={loading}>
+              {loading ? "Logging in..." : "Login"}
+            </button>
+
+            <p className="forgot">Forgot Password</p>
+
+          </div>
+        </div>
 
       </div>
-    </div>
+
+    </>
   );
-};
+}
 
 export default LoginPage;
