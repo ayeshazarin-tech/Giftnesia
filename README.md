@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -16,3 +17,7 @@ Note: This will impact Vite dev & build performances.
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+=======
+# Giftnesia
+Giftnesia is a responsive gift discovery web application built using HTML, CSS, React.js, and JavaScript. It helps users explore and choose gifts for different occasions through an intuitive interface, categorized products, and a seamless browsing experience. The project focuses on modern UI design, responsiveness, and user-friendly navigation.
+>>>>>>> 901e89f6fe995a698ce85684248b18eef63527db
